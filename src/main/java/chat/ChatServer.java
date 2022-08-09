@@ -54,6 +54,7 @@ public class ChatServer {
                             //获取连接
                             SocketChannel socketChannel = serverSocketChannel.accept();
                             //注册到selector
+                            socketChannel.configureBlocking(false);
                             socketChannel.register(selector,SelectionKey.OP_READ);
                             //提示
                             System.out.println(socketChannel.getRemoteAddress() + "上线");
@@ -69,8 +70,6 @@ public class ChatServer {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-
         }
     }
 
@@ -111,9 +110,10 @@ public class ChatServer {
                 socketChannel.write(buffer);
             }
         }
-
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        ChatServer server = new ChatServer();
+        server.listen();
     }
 }
