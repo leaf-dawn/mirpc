@@ -14,7 +14,6 @@ public class TestServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         //向管道加入处理器
-
         //得到管道
         ChannelPipeline pipeline = socketChannel.pipeline();
         //加入一个netty提供的httpServerCodec codec =>[coder ->decoder]
