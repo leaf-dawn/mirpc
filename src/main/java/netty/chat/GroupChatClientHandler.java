@@ -13,6 +13,6 @@ public class GroupChatClientHandler extends SimpleChannelInboundHandler<String> 
     /** 读取到数据时 */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        System.out.println(msg.trim() + "\n");
+        System.out.println(msg.trim());
     }
 }
