@@ -7,6 +7,7 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.ServerSocketChannel;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
@@ -35,9 +36,9 @@ public class MyServer {
             serverBootstrap.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<ServerSocketChannel>() {
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        protected void initChannel(ServerSocketChannel ch) throws Exception {
+                        protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
                             //基于http协议,使用http编码和解码
                             pipeline.addLast(new HttpServerCodec());
@@ -61,7 +62,7 @@ public class MyServer {
                     });
 
             //启动
-            ChannelFuture channelFuture = serverBootstrap.bind(7000).sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(7777).sync();
 
             channelFuture.channel().closeFuture().sync();
         }finally {

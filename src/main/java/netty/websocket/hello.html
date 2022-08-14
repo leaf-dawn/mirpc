@@ -9,7 +9,7 @@
     var socket;
     //判断浏览器是否支持ws
     if (window.WebSocket) {
-        socket = new WebSocket("ws://localhost:7000/hello");
+        socket = new WebSocket("ws://localhost:7777/hello");
         //相当于channelRedo,ev接受到浏览器的回送消息
         socket.onmessage = function (ev) {
             var rt = document.getElementById("responseText");
