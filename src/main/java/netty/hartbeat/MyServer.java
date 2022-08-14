@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author fzw
- * 服务端
+ * 心跳机制服务端
  * @date 2022-08-13 23:31
  */
 public class MyServer {
@@ -44,7 +44,7 @@ public class MyServer {
                             //通过调用handler的userEventTiggered
                             pipeline.addLast(new IdleStateHandler(3,5,7, TimeUnit.SECONDS));
                             //加入一个对空闲检测进一步处理的handler(自定义)
-                            pipeline.addLast(null);
+                            pipeline.addLast(new MyServerHandler());
 
                         }
                     });
