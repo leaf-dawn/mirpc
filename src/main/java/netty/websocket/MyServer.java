@@ -56,7 +56,7 @@ public class MyServer {
                              */
                             pipeline.addLast(new WebSocketServerProtocolHandler("/hello"));
                             //自定义的handler
-                            pipeline.addLast(null);
+                            pipeline.addLast(new MyTestWebSocketFrameHandler());
                         }
                     });
 
