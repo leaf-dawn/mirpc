@@ -22,7 +22,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      * @throws Exception
      */
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public void channelRead(final ChannelHandlerContext ctx, final Object msg) throws Exception {
 //        System.out.println("server ctx = "+ ctx);
 //        //将msg转为byteBuf
 //        ByteBuf buf = (ByteBuf)msg;
