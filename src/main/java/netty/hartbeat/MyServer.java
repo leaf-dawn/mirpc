@@ -1,6 +1,5 @@
 package netty.hartbeat;
 
-import com.sun.security.ntlm.Server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -9,7 +8,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 public class MyServer {
 
     public static void main(String[] args) throws InterruptedException {
-
         //创建事件循环组
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();

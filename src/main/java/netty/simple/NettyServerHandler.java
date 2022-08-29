@@ -28,9 +28,9 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 //        ByteBuf buf = (ByteBuf)msg;
 //        System.out.println("客户端发送的数据为:" + buf.toString(CharsetUtil.UTF_8));
 //        System.out.println("客户端地址：" + ctx.channel().remoteAddress());
-
-        //如果有一个耗时业务,需要异步执行
-
+//
+//        如果有一个耗时业务,需要异步执行
+//
 //        //解决方案一:用户自定义普通线程，放进任务队列 taskQueue
 //        ctx.channel().eventLoop().execute(new Runnable() {
 //            @Override
