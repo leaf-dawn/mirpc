@@ -1,6 +1,5 @@
-package anyrpc.framework.config;
+package anyrpc.framework.constans;
 
-import com.sun.xml.internal.ws.developer.Serialization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
