@@ -2,8 +2,8 @@ package anyrpc.provider;
 import anyrpc.framework.register.LocalRegister;
 import anyrpc.framework.register.RemoteMapRegister;
 import anyrpc.framework.register.URL;
-import anyrpc.provider.service.HelloService;
-import anyrpc.provider.service.impl.HelloServiceImpl;
+import anyrpc.framework.service.HelloService;
+import anyrpc.framework.service.impl.HelloServiceImpl;
 
 /**
  * @author fzw
