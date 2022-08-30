@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class LocalRegister {
 
-    private static Map<String, Class> map = new HashMap<>();
+    private static Map<String, Class> map = new HashMap<String,Class>();
 
     public static void register(String interfaceName, Class implClass){
         map.put(interfaceName, implClass);
