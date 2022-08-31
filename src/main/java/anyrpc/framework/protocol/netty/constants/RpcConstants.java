@@ -23,8 +23,8 @@ public class RpcConstants {
     /** 首部长度 */
     public static final byte HEAD_LENGTH = 16;
     /** 最大帧长 */
-    public static final int MAX_FRAME_LENGHT = 8 * 1024 * 1024;
-    public class Type {
+    public static final int MAX_FRAME_LENGTH = 8 * 1024 * 1024;
+    public class MessageType {
         //rpc请求类型
         public static final byte REQUEST_TYPE = 1;
         //rpc响应类型
