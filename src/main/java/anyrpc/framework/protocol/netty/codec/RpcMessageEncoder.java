@@ -49,8 +49,8 @@ public class RpcMessageEncoder extends MessageToByteEncoder<RpcMessage> {
             byte[] bodyBytes = null;
             int fullLength = RpcConstants.HEAD_LENGTH;
             //标记报文总长度
-            if (messageType != RpcConstants.Type.HEARTBEAT_REQUEST_TYPE 
-                    && messageType != RpcConstants.Type.HEARTBEAT_RESPONSE_TYPE) {
+            if (messageType != RpcConstants.MessageType.HEARTBEAT_REQUEST_TYPE
+                    && messageType != RpcConstants.MessageType.HEARTBEAT_RESPONSE_TYPE) {
                 //序列化
                 Serializer serializer = SerializerFactory.getSerializer(msg.getCodec());
                 bodyBytes = serializer.serialize(msg.getData());
