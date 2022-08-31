@@ -11,8 +11,8 @@ import anyrpc.framework.compress.gzip.GzipCompress;
 public class CompressFactory {
 
 
-    public static Compress getCompress(byte codec) {
-        switch (codec) {
+    public static Compress getCompress(byte compressCode) {
+        switch (compressCode) {
             case 0X01:
                 return new GzipCompress();
             default:
