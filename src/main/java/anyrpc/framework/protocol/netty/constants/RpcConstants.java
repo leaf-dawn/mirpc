@@ -13,12 +13,12 @@ import java.nio.charset.StandardCharsets;
 public class RpcConstants {
 
     /** 魔数，用于标记协议格式*/
-    public static final byte[] MAGIC_NUMBER = {(byte)'g',(byte)'r',(byte)'p',(byte)'c'};
+    public static final byte[] MAGIC_NUMBER = {(byte)'i',(byte)'w',(byte)'z',(byte)'y'};
     /** 协议默认字符集 */
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     /** 协议版本号 */
     public static final byte VERSION = 1;
-    /** 协议总长度 */
+    /** 消息长度 */
     public static final byte TOTAL_LENGTH = 16;
     /** 首部长度 */
     public static final byte HEAD_LENGTH = 16;
