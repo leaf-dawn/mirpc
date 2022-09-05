@@ -1,7 +1,6 @@
-package anyrpc.framework.constans;
+package anyrpc.framework.constants;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 /**
