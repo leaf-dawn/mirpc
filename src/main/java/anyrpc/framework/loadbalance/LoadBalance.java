@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * @author fzw
  * 负载均衡策略接口
+ * todo:负载均衡策略通过配置文件选择
  * @date 2022-09-06 14:51
  */
 public interface LoadBalance {
