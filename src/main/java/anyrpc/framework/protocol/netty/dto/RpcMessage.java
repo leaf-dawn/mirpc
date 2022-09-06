@@ -1,6 +1,7 @@
 package anyrpc.framework.protocol.netty.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +10,11 @@ import lombok.NoArgsConstructor;
  * rcp协议抽象出来的对象
  * @date 2022-08-30 15:26
  */
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RpcMessage<T> {
+public class RpcMessage {
 
    private byte messageType;
 
@@ -20,8 +22,8 @@ public class RpcMessage<T> {
 
    private byte compress;
 
-    private String requestId;
+    private Integer requestId;
 
-    private T data;
+    private Object data;
 
 }

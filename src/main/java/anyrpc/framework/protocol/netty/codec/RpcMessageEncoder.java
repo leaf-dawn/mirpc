@@ -2,8 +2,7 @@ package anyrpc.framework.protocol.netty.codec;
 
 import anyrpc.framework.compress.Compress;
 import anyrpc.framework.compress.CompressFactory;
-import anyrpc.framework.constans.CompressTypeEnum;
-import anyrpc.framework.constans.SerializationTypeEnum;
+import anyrpc.framework.constants.CompressTypeEnum;
 import anyrpc.framework.protocol.netty.constants.RpcConstants;
 import anyrpc.framework.protocol.netty.dto.RpcMessage;
 import anyrpc.framework.serialize.Serializer;
