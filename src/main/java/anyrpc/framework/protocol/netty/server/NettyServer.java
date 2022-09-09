@@ -18,9 +18,6 @@ import io.netty.handler.codec.string.StringEncoder;
 public class NettyServer {
 
 
-    public static final int PORT = 9998;
-
-    private
     private static void start(String hostname, int port) {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup(1);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
