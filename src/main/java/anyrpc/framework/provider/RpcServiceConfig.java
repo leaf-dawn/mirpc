@@ -18,4 +18,12 @@ public class RpcServiceConfig {
 
     /** 目标服务 */
     private Object service;
+
+    public String getRpcServiceName() {
+        return this.getServiceName() + this.getGroup() + this.getVersion();
+    }
+
+    public String getServiceName() {
+        return this.service.getClass().getInterfaces()[0].getCanonicalName();
+    }
 }
