@@ -24,5 +24,5 @@ public interface ServiceProvider {
      * 服务发布
      * @param rpcServiceConfig :
      */
-    void publiService(RpcServiceConfig rpcServiceConfig);
+    void publishService(RpcServiceConfig rpcServiceConfig);
 }
