@@ -16,11 +16,11 @@ import java.net.UnknownHostException;
  */
 
 @Slf4j
-public class ShutdownHook {
+public class CustomShutdownHook {
 
-    private static final ShutdownHook SHUTDOWN_HOOK = new ShutdownHook();
+    private static final CustomShutdownHook SHUTDOWN_HOOK = new CustomShutdownHook();
 
-    public static ShutdownHook getShutdownHook() {
+    public static CustomShutdownHook getShutdownHook() {
         return SHUTDOWN_HOOK;
     }
 
