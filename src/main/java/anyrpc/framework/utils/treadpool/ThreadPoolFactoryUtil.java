@@ -4,10 +4,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.*;
 
 /**
  * @author fzw
@@ -23,6 +20,23 @@ public final class ThreadPoolFactoryUtil {
     /** 构造函数私有化 */
     private ThreadPoolFactoryUtil() {
 
+    }
+
+    /**
+     * 创建一个线程池
+     * @param customThreadPoolConfig 线程池配置
+     * @param threadNamePrefix 线程名称前缀
+     * @param daemon 该线程池里线程是否是守护线程
+     * @return 线程池
+     */
+    private static ExecutorService createThreadPool(CustomThreadPoolConfig customThreadPoolConfig, String threadNamePrefix, Boolean daemon) {
+        ThreadFactory threadFactory = createThreadFactory(threadNamePrefix, daemon);
+        return new ThreadPoolExecutor(customThreadPoolConfig.getCorePoolSize(),
+                customThreadPoolConfig.getMaximumPoolSize(),
+                customThreadPoolConfig.getKeepAliveTime(),
+                customThreadPoolConfig.getTimeUnit(),
+                customThreadPoolConfig.getWorkQueue(),
+                threadFactory);
     }
 
     /**
