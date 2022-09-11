@@ -1,6 +1,7 @@
 package anyrpc.framework.utils.treadpool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.Map;
 import java.util.Objects;
@@ -22,6 +23,11 @@ public final class ThreadPoolFactoryUtil {
 
     }
 
+    /** 对createCustomThreadPoolIfAbsent进行重载，默认配置，默认非守护线程 */
+    public static ExecutorService createCustomThreadPoolIfAbsent(String threadNamePrefix) {
+        CustomThreadPoolConfig customThreadPoolConfig = new CustomThreadPoolConfig();
+        return createCustomThreadPoolIfAbsent(customThreadPoolConfig, threadNamePrefix, false);
+    }
 
     /** 对createCustomThreadPoolIfAbsent进行重载，默认非守护线程 */
     public static ExecutorService createCustomThreadPoolIfAbsent(CustomThreadPoolConfig customThreadPoolConfig,
