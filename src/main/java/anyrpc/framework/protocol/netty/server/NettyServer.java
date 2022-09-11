@@ -1,5 +1,9 @@
 package anyrpc.framework.protocol.netty.server;
 
+import anyrpc.framework.provider.RpcServiceConfig;
+import anyrpc.framework.provider.ServiceProvider;
+import anyrpc.framework.provider.impl.ZkServiceProvider;
+import anyrpc.framework.utils.SingletonFactory;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -17,6 +21,11 @@ import io.netty.handler.codec.string.StringEncoder;
  */
 public class NettyServer {
 
+    private final ServiceProvider serviceProvider = SingletonFactory.getInstance(ZkServiceProvider.class);
+
+    public void registerService(RpcServiceConfig rpcServiceConfig) {
+        serviceProvider.publishService(rpcServiceConfig);
+    }
 
     private static void start(String hostname, int port) {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup(1);
