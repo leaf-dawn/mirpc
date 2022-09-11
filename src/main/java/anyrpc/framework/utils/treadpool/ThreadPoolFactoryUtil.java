@@ -1,7 +1,7 @@
 package anyrpc.framework.utils.treadpool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.checkerframework.checker.units.qual.C;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Objects;
@@ -12,6 +12,8 @@ import java.util.concurrent.*;
  * 线程池工具，用于统一管理所有线程池
  * @date 2022-09-10 14:35
  */
+
+@Slf4j
 public final class ThreadPoolFactoryUtil {
     /**
      * 线程池map，通过threadNamePrefix来区分不同线程池
@@ -92,6 +94,28 @@ public final class ThreadPoolFactoryUtil {
             }
         }
         return Executors.defaultThreadFactory();
+    }
+
+    /**
+     * 关闭管理的所有线程池
+     */
+    public static void shutDownAllThreadPool() {
+        log.info("调用关闭所有线程池方法");
+        THREAD_POOLS.entrySet().parallelStream().forEach(entry -> {
+            ExecutorService executorService = entry.getValue();
+            executorService.shutdown();
+            log.info("正在关闭线程池【{}】【{}】", entry.getKey(), executorService.isTerminated());
+            try {
+                if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                    executorService.shutdownNow();
+                    if (!executorService.awaitTermination(60,TimeUnit.SECONDS)) {
+                        log.error("线程池无法关闭");
+                    }
+                }
+            } catch (InterruptedException e) {
+                executorService.shutdownNow();
+            }
+        });
     }
 
 }
