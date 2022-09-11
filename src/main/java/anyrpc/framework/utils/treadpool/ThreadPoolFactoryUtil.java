@@ -22,6 +22,21 @@ public final class ThreadPoolFactoryUtil {
 
     }
 
+
+    public static ExecutorService createCustomthreadPoolIfAbsent(CustomThreadPoolConfig customThreadPoolConfig,
+                                                                 String threadNamePrefix, Boolean daemon) {
+
+        ExecutorService threadPool = THREAD_POOLS.computeIfAbsent(threadNamePrefix,
+                k -> createThreadPool(customThreadPoolConfig, threadNamePrefix, daemon));
+        //如果被shutdown就再创建一个, todo:isTerminated是否多余
+        if (threadPool.isShutdown() || threadPool.isTerminated()) {
+            THREAD_POOLS.remove(threadNamePrefix);
+            threadPool = createThreadPool(customThreadPoolConfig, threadNamePrefix, daemon);
+            THREAD_POOLS.put(threadNamePrefix, threadPool);
+        }
+        return threadPool;
+    }
+
     /**
      * 创建一个线程池
      * @param customThreadPoolConfig 线程池配置
