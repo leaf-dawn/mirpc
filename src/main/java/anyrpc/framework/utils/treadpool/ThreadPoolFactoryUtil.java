@@ -23,7 +23,21 @@ public final class ThreadPoolFactoryUtil {
     }
 
 
-    public static ExecutorService createCustomthreadPoolIfAbsent(CustomThreadPoolConfig customThreadPoolConfig,
+    /** 对createCustomThreadPoolIfAbsent进行重载，默认非守护线程 */
+    public static ExecutorService createCustomThreadPoolIfAbsent(CustomThreadPoolConfig customThreadPoolConfig,
+                                                                 String threadNamePrefix) {
+        return createCustomThreadPoolIfAbsent(customThreadPoolConfig, threadNamePrefix, false);
+    }
+
+    /**
+     * 根据自定义配置创建线程池
+     * 如果threadNamePrefix中存在的话，直接返回，不存在则创建
+     * @param customThreadPoolConfig 线程池配置
+     * @param threadNamePrefix 线程名称前缀
+     * @param daemon 是否是守护线程
+     * @return 线程池对象
+     */
+    public static ExecutorService createCustomThreadPoolIfAbsent(CustomThreadPoolConfig customThreadPoolConfig,
                                                                  String threadNamePrefix, Boolean daemon) {
 
         ExecutorService threadPool = THREAD_POOLS.computeIfAbsent(threadNamePrefix,
