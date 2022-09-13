@@ -5,9 +5,10 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * @author fzw
+ * rpc的处理器
  * @date 2022-08-29 20:27
  */
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class NettyRpcServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
