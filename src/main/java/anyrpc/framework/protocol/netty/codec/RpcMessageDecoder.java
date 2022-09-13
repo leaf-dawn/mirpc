@@ -90,6 +90,7 @@ public class RpcMessageDecoder extends LengthFieldBasedFrameDecoder {
         //创建消息
         RpcMessage rpcMessage = RpcMessage.builder()
                 .codec(codecType)
+                .compress(compressType)
                 .requestId(requestId)
                 .messageType(messageType).build();
         //如果消息类型是ping
