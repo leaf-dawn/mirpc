@@ -17,14 +17,11 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 
-import javax.swing.text.html.Option;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -32,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * 服务端
  * @date 2022-08-29 20:22
  */
-public class NettyServer {
+public class NettyRpcServer {
 
     private final ServiceProvider serviceProvider = SingletonFactory.getInstance(ZkServiceProvider.class);
 
@@ -76,7 +73,7 @@ public class NettyServer {
                             pipeline.addLast(new IdleStateHandler(30, 0, 0 , TimeUnit.SECONDS));
                             pipeline.addLast(new RpcMessageDecoder());
                             pipeline.addLast(new RpcMessageEncoder());
-                            pipeline.addLast(eventExecutorGroup, new NettyServerHandler());
+                            pipeline.addLast(eventExecutorGroup, new NettyRpcServerHandler());
                         }
                     });
             //绑定端口，同步等待
