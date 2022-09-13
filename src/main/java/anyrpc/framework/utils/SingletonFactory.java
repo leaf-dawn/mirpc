@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author fzw
  * 单例工厂
+ * 统一管理bean
  * @date 2022-09-09 15:36
  */
 public class SingletonFactory {
