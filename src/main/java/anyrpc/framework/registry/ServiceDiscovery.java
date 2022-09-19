@@ -16,5 +16,5 @@ public interface ServiceDiscovery {
      * @param rpcRequest rpc服务请求
      * @return 服务地址
      */
-    InetSocketAddress registerService(RpcRequest rpcRequest);
+    InetSocketAddress lookupService(RpcRequest rpcRequest);
 }
