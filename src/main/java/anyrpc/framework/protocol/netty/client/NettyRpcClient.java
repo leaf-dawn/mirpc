@@ -1,9 +1,14 @@
 package anyrpc.framework.protocol.netty.client;
 
+import anyrpc.framework.constants.CompressTypeEnum;
+import anyrpc.framework.constants.SerializationTypeEnum;
 import anyrpc.framework.constants.ServiceRegistryEnum;
 import anyrpc.framework.protocol.netty.codec.RpcMessageDecoder;
 import anyrpc.framework.protocol.netty.codec.RpcMessageEncoder;
+import anyrpc.framework.protocol.netty.constants.RpcConstants;
+import anyrpc.framework.protocol.netty.dto.RpcMessage;
 import anyrpc.framework.protocol.netty.dto.RpcRequest;
+import anyrpc.framework.protocol.netty.dto.RpcResponse;
 import anyrpc.framework.registry.ServiceDiscovery;
 import anyrpc.framework.registry.ServiceRegistryFactory;
 import anyrpc.framework.utils.SingletonFactory;
@@ -15,13 +20,14 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.protostuff.Rpc;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import netty.tcp.NettyClient;
 import netty.tcp.NettyClientHandler;
+import org.checkerframework.checker.units.qual.C;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -69,9 +75,38 @@ public class NettyRpcClient implements RpcRequestTransport{
         this.channelManager = SingletonFactory.getInstance(ChannelManager.class);
 
     }
+
+    @SneakyThrows
     @Override
     public Object sendRpcRequest(RpcRequest rpcRequest) {
-        return null;
+        //发送数据
+        CompletableFuture<RpcResponse<Object>> resultFuture = new CompletableFuture<>();
+        //获取地址地址对应channel
+        InetSocketAddress inetSocketAddress = serviceDiscovery.lookupService(rpcRequest);
+        Channel channel = getChannel(inetSocketAddress);
+        if (channel.isActive()) {
+            //添加future
+            requestManager.put(rpcRequest.getRequestId(), resultFuture);
+            //设置rpcMessage并发送
+            RpcMessage rpcMessage = RpcMessage.builder().data(rpcRequest)
+                    .codec(SerializationTypeEnum.HESSIAN.getCode())
+                    .compress(CompressTypeEnum.GZIP.getCode())
+                    .messageType(RpcConstants.MessageType.REQUEST_TYPE).build();
+            channel.writeAndFlush(resultFuture).addListener((ChannelFutureListener) future ->{
+                //如果成功，则发送发送成功信息
+                if (future.isSuccess()) {
+                    log.info("client send message: [{}]", rpcMessage);
+                } {
+                    //失败则结束该请求
+                    future.channel().close();
+                    resultFuture.completeExceptionally(future.cause());
+                    log.error("send failed:", future.cause());
+                }
+            });
+            return resultFuture;
+        } else {
+            throw new  IllegalStateException();
+        }
     }
 
     /**
@@ -80,7 +115,8 @@ public class NettyRpcClient implements RpcRequestTransport{
      * @param inetSocketAddress ：网络地址
      * @return : 连接的socket
      */
-    public Channel doConnect(InetSocketAddress inetSocketAddress) throws ExecutionException, InterruptedException {
+    @SneakyThrows
+    public Channel doConnect(InetSocketAddress inetSocketAddress) {
         CompletableFuture<Channel> completableFuture = new CompletableFuture<>();
         //进行连接
         bootstrap.connect(inetSocketAddress).addListener((ChannelFutureListener)future -> {
@@ -92,5 +128,20 @@ public class NettyRpcClient implements RpcRequestTransport{
             }
         });
         return completableFuture.get();
+    }
+
+
+    /**
+     * 根据地址获取channel，如果没有channel就进行连接
+     * @param inetSocketAddress 网路信息
+     * @return channel
+     */
+    public Channel getChannel(InetSocketAddress inetSocketAddress) {
+        Channel channel = channelManager.get(inetSocketAddress);
+        if (channel == null) {
+            channel = doConnect(inetSocketAddress);
+            channelManager.set(inetSocketAddress, channel);
+        }
+        return channel;
     }
 }
