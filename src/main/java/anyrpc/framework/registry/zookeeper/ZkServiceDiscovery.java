@@ -26,7 +26,7 @@ public class ZkServiceDiscovery implements ServiceDiscovery {
     }
 
     @Override
-    public InetSocketAddress registerService(RpcRequest rpcRequest) {
+    public InetSocketAddress lookupService(RpcRequest rpcRequest) {
         //获取获取服务名
         String rpcServiceName = rpcRequest.getRpcServiceName();
         //获取该服务名下注册的所有服务地址

@@ -17,7 +17,7 @@ public class RequestManager {
 
     private static final Map<String, CompletableFuture> UNPROCESSED_RESPONSE = new ConcurrentHashMap<>();
 
-    public void put(String requestId, CompletableFuture<RpcResponse> future) {
+    public void put(String requestId, CompletableFuture<RpcResponse<Object>> future) {
         UNPROCESSED_RESPONSE.put(requestId, future);
     }
 
