@@ -100,6 +100,13 @@
             <artifactId>curator-recipes</artifactId>
             <version>4.2.0</version>
         </dependency>
+
+        <!--spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
