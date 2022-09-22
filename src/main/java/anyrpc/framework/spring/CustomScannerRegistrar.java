@@ -1,6 +1,7 @@
 package anyrpc.framework.spring;
 
 import anyrpc.framework.annotation.RpcScan;
+import anyrpc.framework.annotation.RpcService;
 import com.sun.xml.internal.ws.wsdl.writer.document.Import;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ResourceLoaderAware;
@@ -43,7 +44,7 @@ public class CustomScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
             rpcScanBasePackages = new String[]{ClassUtils.getPackageName(annotationMetadata.getClassName())};
         }
         //用于扫描rpcService注解
-        CustomScanner customScanner = new CustomScanner(registry,RpcService.class);
+        CustomScanner customScanner = new CustomScanner(registry, RpcService.class);
         if (resourceLoader != null) {
             customScanner.setResourceLoader(resourceLoader);
         }
