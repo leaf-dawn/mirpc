@@ -7,7 +7,7 @@ import anyrpc.framework.protocol.netty.client.RpcRequestTransport;
 import anyrpc.framework.provider.RpcServiceConfig;
 import anyrpc.framework.provider.ServiceProvider;
 import anyrpc.framework.provider.impl.ZkServiceProvider;
-import anyrpc.framework.proxy.RpcClientProxy;
+import anyrpc.framework.spring.proxy.RpcClientProxy;
 import anyrpc.framework.utils.SingletonFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

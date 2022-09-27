@@ -1,4 +1,4 @@
-package anyrpc.framework.proxy;
+package anyrpc.framework.spring.proxy;
 
 import anyrpc.framework.constants.RpcCodeEnum;
 import anyrpc.framework.protocol.netty.client.NettyRpcClient;
