@@ -1,5 +1,6 @@
 package anyrpc.framework.provider;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  * 服务对象
  * @date 2022-09-08 12:06
  */
+@Builder
 @Data
 public class RpcServiceConfig {
 

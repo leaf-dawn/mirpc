@@ -1,6 +1,7 @@
 package anyrpc.framework.protocol.netty.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.SneakyThrows;
 
@@ -9,6 +10,7 @@ import lombok.SneakyThrows;
  * rpc请求对象
  * @date 2022-08-30 15:35
  */
+@Builder
 @Data
 @AllArgsConstructor
 public class RpcRequest {

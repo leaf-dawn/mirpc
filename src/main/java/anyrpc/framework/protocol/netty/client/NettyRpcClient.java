@@ -78,7 +78,7 @@ public class NettyRpcClient implements RpcRequestTransport{
 
     @SneakyThrows
     @Override
-    public Object sendRpcRequest(RpcRequest rpcRequest) {
+    public CompletableFuture<RpcResponse<Object>> sendRpcRequest(RpcRequest rpcRequest) {
         //发送数据
         CompletableFuture<RpcResponse<Object>> resultFuture = new CompletableFuture<>();
         //获取地址地址对应channel
