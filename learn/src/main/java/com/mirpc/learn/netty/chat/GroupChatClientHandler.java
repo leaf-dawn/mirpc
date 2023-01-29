@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.chat;
+package com.mirpc.learn.netty.chat;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

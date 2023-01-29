@@ -1,10 +1,10 @@
-package main.java.com.mirpc.learn.netty.tcp;
+package com.mirpc.learn.netty.tcp;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import main.java.com.mirpc.learn.netty.tcp.protocltcp.MessageProtocol;
+import com.mirpc.learn.netty.tcp.protocltcp.MessageProtocol;
 
 import java.nio.charset.Charset;
 import java.util.UUID;

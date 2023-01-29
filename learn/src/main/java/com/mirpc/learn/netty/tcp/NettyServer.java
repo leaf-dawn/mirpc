@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.tcp;
+package com.mirpc.learn.netty.tcp;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;

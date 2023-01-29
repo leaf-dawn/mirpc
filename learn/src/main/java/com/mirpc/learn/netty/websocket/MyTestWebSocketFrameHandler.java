@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.websocket;
+package com.mirpc.learn.netty.websocket;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

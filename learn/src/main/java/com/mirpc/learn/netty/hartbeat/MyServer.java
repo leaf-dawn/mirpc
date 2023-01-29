@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.hartbeat;
+package com.mirpc.learn.netty.hartbeat;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;

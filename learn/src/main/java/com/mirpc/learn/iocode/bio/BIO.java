@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.iocode.bio;
+package com.mirpc.learn.iocode.bio;
 
 /**
  * @author nbwz

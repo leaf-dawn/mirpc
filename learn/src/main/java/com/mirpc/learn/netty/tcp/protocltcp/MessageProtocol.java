@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.tcp.protocltcp;
+package com.mirpc.learn.netty.tcp.protocltcp;
 
 import lombok.Data;
 

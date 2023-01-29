@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.hartbeat;
+package com.mirpc.learn.netty.hartbeat;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

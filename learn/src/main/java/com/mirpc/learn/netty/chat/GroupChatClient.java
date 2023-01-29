@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.chat;
+package com.mirpc.learn.netty.chat;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

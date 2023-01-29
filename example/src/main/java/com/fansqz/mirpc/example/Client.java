@@ -1,7 +1,8 @@
 package com.fansqz.mirpc.example;
 
-import anyrpc.framework.protocol.netty.client.NettyRpcClient;
-import anyrpc.framework.protocol.netty.dto.RpcRequest;
+
+import com.fansqz.mirpc.framework.protocol.netty.client.NettyRpcClient;
+import com.fansqz.mirpc.framework.protocol.netty.dto.RpcRequest;
 
 public class Client {
     public static void main(String[] args) {

@@ -22,7 +22,6 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import netty.tcp.NettyClientHandler;
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -64,7 +63,7 @@ public class NettyRpcClient {
                         pipeline.addLast(new IdleStateHandler(0, 5, 0, TimeUnit.SECONDS));
                         pipeline.addLast(new RpcMessageEncoder());
                         pipeline.addLast(new RpcMessageDecoder());
-                        pipeline.addLast(new NettyClientHandler());
+                        pipeline.addLast(new NettyRpcClientHandler());
                     }
                 });
         this.serviceDiscovery = ServiceRegistryFactory.getServiceDiscovery(ServiceRegistryEnum.ZOOKEEPER.getCode());

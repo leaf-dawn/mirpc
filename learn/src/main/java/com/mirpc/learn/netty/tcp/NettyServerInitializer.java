@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.tcp;
+package com.mirpc.learn.netty.tcp;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

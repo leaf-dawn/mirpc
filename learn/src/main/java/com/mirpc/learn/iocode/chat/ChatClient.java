@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.iocode.chat;
+package com.mirpc.learn.iocode.chat;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
