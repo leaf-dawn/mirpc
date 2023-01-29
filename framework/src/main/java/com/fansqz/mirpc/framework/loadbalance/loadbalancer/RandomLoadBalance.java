@@ -1,7 +1,7 @@
 package com.fansqz.mirpc.framework.loadbalance.loadbalancer;
 
 import com.fansqz.mirpc.framework.loadbalance.AbstractLoadBalance;
-import com.fansqz.mirpc.framework.protocol.netty.dto.RpcRequest;
+import com.fansqz.mirpc.framework.protocol.dto.RpcRequest;
 
 import java.util.List;
 import java.util.Random;

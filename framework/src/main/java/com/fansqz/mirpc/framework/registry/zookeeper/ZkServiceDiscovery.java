@@ -3,7 +3,7 @@ package com.fansqz.mirpc.framework.registry.zookeeper;
 import com.fansqz.mirpc.framework.constants.LoadBalanceTypeEnum;
 import com.fansqz.mirpc.framework.loadbalance.LoadBalance;
 import com.fansqz.mirpc.framework.loadbalance.LoadBalancerFactory;
-import com.fansqz.mirpc.framework.protocol.netty.dto.RpcRequest;
+import com.fansqz.mirpc.framework.protocol.dto.RpcRequest;
 import com.fansqz.mirpc.framework.registry.ServiceDiscovery;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;

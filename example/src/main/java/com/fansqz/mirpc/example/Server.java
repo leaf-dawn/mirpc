@@ -1,7 +1,7 @@
 package com.fansqz.mirpc.example;
 
 
-import com.fansqz.mirpc.framework.protocol.netty.server.NettyRpcServer;
+import com.fansqz.mirpc.framework.server.NettyRpcServer;
 import com.fansqz.mirpc.framework.provider.RpcServiceConfig;
 
 public class Server {

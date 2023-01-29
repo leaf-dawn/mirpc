@@ -1,8 +1,7 @@
 package com.fansqz.mirpc.framework.loadbalance.loadbalancer;
 
 import com.fansqz.mirpc.framework.loadbalance.AbstractLoadBalance;
-import com.fansqz.mirpc.framework.protocol.netty.dto.RpcRequest;
-import org.checkerframework.checker.units.qual.A;
+import com.fansqz.mirpc.framework.protocol.dto.RpcRequest;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

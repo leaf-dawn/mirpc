@@ -1,6 +1,6 @@
 package com.fansqz.mirpc.framework.loadbalance;
 
-import com.fansqz.mirpc.framework.protocol.netty.dto.RpcRequest;
+import com.fansqz.mirpc.framework.protocol.dto.RpcRequest;
 
 import java.util.List;
 
