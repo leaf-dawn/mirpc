@@ -165,7 +165,7 @@ public class CuratorUtils {
         try {
             //等待30s，直到连接成功
             if (!zkClient.blockUntilConnected(30, TimeUnit.SECONDS)) {
-                throw new RuntimeException("连接zk超时");
+                log.error("连接zk超时");
             }
         } catch (InterruptedException e) {
             log.error("连接zk失败");

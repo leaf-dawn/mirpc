@@ -70,12 +70,6 @@
             <version>1.18.20</version>
         </dependency>
         <!-- log -->
-        <!-- slf4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
         <!--zookeeper-->
         <dependency>
             <groupId>org.apache.curator</groupId>

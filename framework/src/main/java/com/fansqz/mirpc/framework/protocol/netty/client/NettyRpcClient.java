@@ -91,7 +91,7 @@ public class NettyRpcClient {
                 //如果成功，则发送发送成功信息
                 if (future.isSuccess()) {
                     log.info("client send message: [{}]", rpcMessage);
-                } {
+                } else {
                     //失败则结束该请求
                     future.channel().close();
                     resultFuture.completeExceptionally(future.cause());
