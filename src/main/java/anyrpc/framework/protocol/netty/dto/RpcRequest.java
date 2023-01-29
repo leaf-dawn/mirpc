@@ -27,7 +27,7 @@ public class RpcRequest {
     private Class<?>[] paramTypes;
     /** 多版本控制 */
     private String version;
-
+    /** 一个接口有多种实现，可以通过group区分 */
     private String group;
 
     /** todo：简单相加会导致冲突而出现问题 */

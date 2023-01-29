@@ -7,10 +7,10 @@ package anyrpc.framework.constants;
  */
 public class ConfigConstants {
 
-     public class RpcConfig {
+     public static class RpcConfig {
          //rpc配置位置
         public final static String RPC_CONFIG_PATH = "rpc.properties";
         //zookeeper地址
-        public final static String ZK_ADDRESS = "rpc.zookeeper,address";
+        public final static String ZK_ADDRESS = "rpc.zookeeper.address";
     }
 }

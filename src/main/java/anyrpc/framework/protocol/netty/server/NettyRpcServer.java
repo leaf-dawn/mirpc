@@ -37,7 +37,7 @@ public class NettyRpcServer {
         serviceProvider.publishService(rpcServiceConfig);
     }
 
-    private static void start(String hostname, int port) {
+    public static void start(String hostname, int port) {
         //添加程序关闭的钩子
         CustomShutdownHook.getShutdownHook().addShutdownHook();
         NioEventLoopGroup boosGroup = new NioEventLoopGroup(1);

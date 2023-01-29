@@ -20,12 +20,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import io.protostuff.Rpc;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import netty.tcp.NettyClientHandler;
-import org.checkerframework.checker.units.qual.C;
-
 import java.net.InetSocketAddress;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -39,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Slf4j
-public class NettyRpcClient implements RpcRequestTransport{
+public class NettyRpcClient {
 
     private final ServiceDiscovery serviceDiscovery;
 
@@ -77,7 +74,6 @@ public class NettyRpcClient implements RpcRequestTransport{
     }
 
     @SneakyThrows
-    @Override
     public CompletableFuture<RpcResponse<Object>> sendRpcRequest(RpcRequest rpcRequest) {
         //发送数据
         CompletableFuture<RpcResponse<Object>> resultFuture = new CompletableFuture<>();
@@ -92,7 +88,7 @@ public class NettyRpcClient implements RpcRequestTransport{
                     .codec(SerializationTypeEnum.HESSIAN.getCode())
                     .compress(CompressTypeEnum.GZIP.getCode())
                     .messageType(RpcConstants.MessageType.REQUEST_TYPE).build();
-            channel.writeAndFlush(resultFuture).addListener((ChannelFutureListener) future ->{
+            channel.writeAndFlush(rpcMessage).addListener((ChannelFutureListener) future ->{
                 //如果成功，则发送发送成功信息
                 if (future.isSuccess()) {
                     log.info("client send message: [{}]", rpcMessage);
