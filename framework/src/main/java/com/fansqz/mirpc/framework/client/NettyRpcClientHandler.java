@@ -20,12 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NettyRpcClientHandler extends SimpleChannelInboundHandler<RpcMessage> {
 
-    private final RequestManager requestManager;
+    private final FutureManager futureManager;
 
     private final ChannelManager channelManager;
 
     public NettyRpcClientHandler() {
-        requestManager = SingletonFactory.getInstance(RequestManager.class);
+        futureManager = SingletonFactory.getInstance(FutureManager.class);
         channelManager = SingletonFactory.getInstance(ChannelManager.class);
     }
 
@@ -39,7 +39,7 @@ public class NettyRpcClientHandler extends SimpleChannelInboundHandler<RpcMessag
             } else if (messageType == RpcConstants.MessageType.RESPONSE_TYPE) {
                 RpcResponse<Object> rpcResponse = (RpcResponse<Object>) msg.getData();
                 //设置该请求为完成
-                requestManager.complete(rpcResponse);
+                futureManager.complete(rpcResponse);
             }
         }finally {
             //手动释放msg，返回结果以后，msg不应该继续保留使用

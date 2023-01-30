@@ -39,7 +39,7 @@ public class NettyRpcClient {
 
     private final ServiceDiscovery serviceDiscovery;
 
-    private final RequestManager requestManager;
+    private final FutureManager futureManager;
 
     private final ChannelManager channelManager;
 
@@ -67,7 +67,7 @@ public class NettyRpcClient {
                     }
                 });
         this.serviceDiscovery = ServiceRegistryFactory.getServiceDiscovery(ServiceRegistryEnum.ZOOKEEPER.getCode());
-        this.requestManager = SingletonFactory.getInstance(RequestManager.class);
+        this.futureManager = SingletonFactory.getInstance(FutureManager.class);
         this.channelManager = SingletonFactory.getInstance(ChannelManager.class);
 
     }
@@ -81,7 +81,7 @@ public class NettyRpcClient {
         Channel channel = getChannel(inetSocketAddress);
         if (channel.isActive()) {
             //添加future
-            requestManager.put(rpcRequest.getRequestId(), resultFuture);
+            futureManager.put(rpcRequest.getRequestId(), resultFuture);
             //设置rpcMessage并发送
             RpcMessage rpcMessage = RpcMessage.builder().data(rpcRequest)
                     .codec(SerializationTypeEnum.HESSIAN.getCode())

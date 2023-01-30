@@ -13,15 +13,15 @@ import java.util.concurrent.ConcurrentHashMap;
  * 记录提交请求，如果完成则去除
  * @date 2022-09-13 21:52
  */
-public class RequestManager {
+public class FutureManager {
 
-    private static final Map<String, CompletableFuture> UNPROCESSED_RESPONSE = new ConcurrentHashMap<>();
+    private static final Map<String, CompletableFuture<RpcResponse>> UNPROCESSED_RESPONSE = new ConcurrentHashMap<>();
 
-    public void put(String requestId, CompletableFuture<RpcResponse<Object>> future) {
+    public void put(String requestId, CompletableFuture future) {
         UNPROCESSED_RESPONSE.put(requestId, future);
     }
 
-    public void complete(RpcResponse rpcResponse) {
+    public void complete(RpcResponse<?> rpcResponse) {
         CompletableFuture future = UNPROCESSED_RESPONSE.remove(rpcResponse.getRequestId());
         if (Objects.nonNull(future)) {
             future.complete(rpcResponse);

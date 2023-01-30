@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
@@ -32,7 +34,7 @@ public class PropertiesFileUitl {
         }
         Properties properties = null;
         try (InputStreamReader inputStreamReader = new InputStreamReader(
-                new FileInputStream(rpcConfigPath),StandardCharsets.UTF_8)) {
+                Files.newInputStream(Paths.get(rpcConfigPath)),StandardCharsets.UTF_8)) {
             properties = new Properties();
             properties.load(inputStreamReader);
         } catch (Exception e) {
