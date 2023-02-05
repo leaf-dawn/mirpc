@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.buf;
+package com.mirpc.learn.netty.buf;
 
 import io.netty.buffer.ByteBuf;
 

@@ -1,5 +1,6 @@
 package com.fansqz.mirpc.framework.protocol.serialize.kyro;
 
+import com.esotericsoftware.kryo.util.Pool;
 import com.fansqz.mirpc.framework.protocol.serialize.Serializer;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
@@ -17,24 +18,22 @@ import java.io.IOException;
  */
 public class KryoSerializer implements Serializer {
 
-    /** kryos非线程安全*/
-    private static final ThreadLocal<Kryo> kryos = new ThreadLocal<Kryo>() {
-        @Override
-        protected Kryo initialValue() {
-            Kryo kryo = new Kryo();
-            // configure kryo instance, customize settings
-            return kryo;
-        };
+    /**
+     * kryos非线程安全
+     */
+    private static final Pool<Kryo> kryoPool = new Pool<Kryo>(true, false, 8) {
+        protected Kryo create() {
+            return new Kryo();
+        }
     };
-
 
     @Override
     public byte[] serialize(Object obj) {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
              Output output = new Output(byteArrayOutputStream)) {
-             Kryo kryo = kryos.get();
+             Kryo kryo = kryoPool.obtain();
              kryo.writeObject(output,obj);
-             kryos.remove();
+             kryoPool.free(kryo);
              return output.getBuffer();
         } catch (IOException e) {
             throw new SerializationException("kery序列化失败");
@@ -45,9 +44,9 @@ public class KryoSerializer implements Serializer {
     public <T> T deserialize(byte[] bytes, Class<T> clazz) {
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
              Input input = new Input(byteArrayInputStream)) {
-            Kryo kryo = kryos.get();
+            Kryo kryo = kryoPool.obtain();
             Object o = kryo.readObject(input,clazz);
-            kryos.remove();
+            kryoPool.free(kryo);
             return clazz.cast(o);
         } catch (IOException e) {
             throw new SerializationException("kery反序列化失败");

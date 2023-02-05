@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.juc;
+package com.mirpc.learn.juc;
 
 /**
  * @author fzw

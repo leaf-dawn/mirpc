@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.iocode.nio;
+package com.mirpc.learn.iocode.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

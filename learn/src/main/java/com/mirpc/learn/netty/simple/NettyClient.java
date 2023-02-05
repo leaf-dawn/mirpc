@@ -1,4 +1,4 @@
-package main.java.com.mirpc.learn.netty.simple;
+package com.mirpc.learn.netty.simple;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

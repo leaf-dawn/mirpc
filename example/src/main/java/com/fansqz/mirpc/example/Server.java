@@ -13,6 +13,6 @@ public class Server {
                 .build();
         server.registerService(config);
         // 启动服务端
-        NettyRpcServer.start("192.168.2.77", 9998);
+        NettyRpcServer.start(9998);
     }
 }

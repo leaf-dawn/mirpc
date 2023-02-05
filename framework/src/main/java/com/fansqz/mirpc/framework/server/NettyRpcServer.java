@@ -37,7 +37,7 @@ public class NettyRpcServer {
         serviceProvider.publishService(rpcServiceConfig);
     }
 
-    public static void start(String hostname, int port) {
+    public static void start(int port) {
         //添加程序关闭的钩子
         CustomShutdownHook.getShutdownHook().addShutdownHook();
         NioEventLoopGroup boosGroup = new NioEventLoopGroup(1);
@@ -77,7 +77,7 @@ public class NettyRpcServer {
                         }
                     });
             //绑定端口，同步等待
-            ChannelFuture channelFuture = serverBootstrap.bind(hostname, port).sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
             //同步等待关闭
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
