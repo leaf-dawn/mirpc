@@ -1,7 +1,8 @@
 package com.fansqz.mirpc.framework.registry.zookeeper;
 
-import com.fansqz.mirpc.framework.constants.ConfigConstants;
-import com.fansqz.mirpc.framework.utils.PropertiesFileUitl;
+import com.fansqz.mirpc.framework.utils.config.ConfigConstants;
+import com.fansqz.mirpc.framework.utils.config.MiRPCConfig;
+import com.fansqz.mirpc.framework.utils.config.PropertiesFileUitl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
@@ -44,8 +45,6 @@ public class CuratorUtils {
 
     private static CuratorFramework zkClient;
 
-    //ZK的默认地址
-    private static final String DEFAULT_ZOOKEEPER_ADDRESS = "127.0.0.1:2181";
 
 
     /**
@@ -141,15 +140,6 @@ public class CuratorUtils {
 
 
     public static CuratorFramework getZkClient() {
-        //检测配置是否配置了zk地址
-        Properties properties = PropertiesFileUitl.readPropertiesFile(ConfigConstants.RpcConfig.RPC_CONFIG_PATH);
-        //获取配置文件位置
-        String zookeeperAddress = null;
-        if (properties == null) {
-            zookeeperAddress = DEFAULT_ZOOKEEPER_ADDRESS;
-        }else {
-            zookeeperAddress = properties.getProperty(ConfigConstants.RpcConfig.ZK_ADDRESS);
-        }
         //设置重试策略，重试3次
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRIED);
         //如果客户端已经启动，直接返回
@@ -158,7 +148,7 @@ public class CuratorUtils {
         }
         //创建客户端
         zkClient = CuratorFrameworkFactory.builder()
-                .connectString(zookeeperAddress)
+                .connectString(MiRPCConfig.ZOOKEEPER_ADDRESS)
                 .retryPolicy(retryPolicy)
                 .build();
         zkClient.start();

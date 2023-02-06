@@ -1,6 +1,6 @@
 package com.fansqz.mirpc.framework.provider.impl;
 
-import com.fansqz.mirpc.framework.constants.RpcNetConstants;
+import com.fansqz.mirpc.framework.utils.config.MiRPCConfig;
 import com.fansqz.mirpc.framework.constants.ServiceRegistryEnum;
 import com.fansqz.mirpc.framework.provider.RpcServiceConfig;
 import com.fansqz.mirpc.framework.provider.ServiceProvider;
@@ -63,8 +63,9 @@ public class ZkServiceProvider implements ServiceProvider {
             String host = InetAddress.getLocalHost().getHostAddress();
             //进行本地注册
             this.addService(rpcServiceConfig);
-            //进行服务注册
-            serviceRegistry.registerService(rpcServiceConfig.getRpcServiceName(), new InetSocketAddress(host, RpcNetConstants.PORT));
+            // 进行服务注册
+            serviceRegistry.registerService(rpcServiceConfig.getRpcServiceName(),
+                    new InetSocketAddress(host, MiRPCConfig.RPC_PROTOCOL_PORT));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

@@ -1,15 +1,9 @@
-package com.fansqz.mirpc.framework.utils;
+package com.fansqz.mirpc.framework.utils.config;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.FileInputStream;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
