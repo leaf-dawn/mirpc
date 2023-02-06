@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -33,12 +34,11 @@ public class PropertiesFileUitl {
             rpcConfigPath = url.getPath() + fileName;
         }
         Properties properties = null;
-        try (InputStreamReader inputStreamReader = new InputStreamReader(
-                Files.newInputStream(Paths.get(rpcConfigPath)),StandardCharsets.UTF_8)) {
+        try (FileReader fileReader = new FileReader(rpcConfigPath)) {
             properties = new Properties();
-            properties.load(inputStreamReader);
+            properties.load(fileReader);
         } catch (Exception e) {
-            log.error("读取rpc怕配置文件失败[{}]",fileName);
+            log.error("读取rpc配置文件失败[{}]",fileName);
         }
         return properties;
     }
