@@ -1,7 +1,7 @@
 package com.fansqz.mirpc.framework.utils;
 
-import java.util.Map;
-import java.util.Objects;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -10,25 +10,25 @@ import java.util.concurrent.ConcurrentHashMap;
  * 统一管理bean
  * @date 2022-09-09 15:36
  */
-public class SingletonFactory {
-
-    /** 用于存储单例对象 */
+public final class SingletonFactory {
     private static final Map<String, Object> OBJECT_MAP = new ConcurrentHashMap<>();
 
-    /** 获取一个单例对象 */
-    public static <T> T getInstance(Class<T> clazz) {
-        if (Objects.isNull(clazz)) {
+    private SingletonFactory() {
+    }
+
+    public static <T> T getInstance(Class<T> c) {
+        if (c == null) {
             throw new IllegalArgumentException();
         }
-        String key = clazz.toString();
+        String key = c.toString();
         if (OBJECT_MAP.containsKey(key)) {
-            return clazz.cast(OBJECT_MAP.get(key));
-        }else {
-            return clazz.cast(OBJECT_MAP.computeIfAbsent(key, k -> {
+            return c.cast(OBJECT_MAP.get(key));
+        } else {
+            return c.cast(OBJECT_MAP.computeIfAbsent(key, k -> {
                 try {
-                    return clazz.newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e.getMessage(),e);
+                    return c.getDeclaredConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                    throw new RuntimeException(e.getMessage(), e);
                 }
             }));
         }

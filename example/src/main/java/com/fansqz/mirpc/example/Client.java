@@ -5,11 +5,14 @@ import com.fansqz.mirpc.framework.client.NettyRpcClient;
 import com.fansqz.mirpc.framework.protocol.dto.RpcRequest;
 import com.fansqz.mirpc.framework.protocol.dto.RpcResponse;
 
+import java.io.*;
+import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.zip.GZIPOutputStream;
 
 public class Client {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         NettyRpcClient client = new NettyRpcClient();
         RpcRequest rpcRequest = RpcRequest.builder()
                 .interfaceName(Service.class.getCanonicalName())
